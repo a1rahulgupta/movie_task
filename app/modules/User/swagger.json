@@ -1,0 +1,110 @@
+{
+    "paths": {
+        "/users/register": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "Create new user in system",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "required": true,
+                        "in": "body",
+                        "description": "User that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/Register"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New user is created",
+                        "schema": {
+                            "$ref": "#/definitions/Register"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/login": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "Login",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Login",
+                        "schema": {
+                            "$ref": "#/definitions/Login"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Login.",
+                        "schema": {
+                            "$ref": "#/definitions/Login"
+                        }
+                    }
+                }
+            }
+        }
+        
+    },
+    "definitions": {
+        "Register": {
+            "required": [
+                "emailId"
+            ],
+            "properties": {
+                "emailId": {
+                    "type": "string",
+                    "example": "rahul@yopmail.com",
+                    "uniqueItems": true
+                },
+                "password": {
+                    "type": "string",
+                    "example": "Rahul@123",
+                    "uniqueItems": true
+                },
+                "lastName": {
+                    "example": "Gupta",
+                    "type": "string"
+                },
+                "firstName": {
+                    "example": "Rahul",
+                    "type": "string"
+                }
+            }
+        },
+        "Login": {
+            "required": [
+                "emailId",
+                "password"
+            ],
+            "properties": {
+                "emailId": {
+                    "type": "string",
+                    "example": "rahul@yopmail.com",
+                    "uniqueItems": true
+                },
+                "password": {
+                    "type": "string",
+                    "example": "Rahul@123",
+                    "uniqueItems": true
+                }
+            }
+        }
+        
+    }
+}

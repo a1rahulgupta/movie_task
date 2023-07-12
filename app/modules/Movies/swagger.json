@@ -1,0 +1,200 @@
+{
+    "paths": {
+        "/addUpdateMovies": {
+            "post": {
+                "tags": [
+                    "Movie Management"
+                ],
+                "description": "Add Movie",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Add Movie",
+                        "schema": {
+                            "$ref": "#/definitions/AddMovie"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization token",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Movie added successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/AddMovie"
+                        }
+                    }
+                }
+            }
+        },
+        "/MoviesList": {
+            "post": {
+                "tags": [
+                    "Movie Management"
+                ],
+                "description": "Movie list",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Params",
+                        "schema": {
+                            "$ref": "#/definitions/MoviesList"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization token",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Movie list.",
+                        "schema": {
+                            "$ref": "#/definitions/MoviesList"
+                        }
+                    }
+                }
+            }
+        },
+        "/deleteMovies": {
+            "post": {
+                "tags": [
+                    "Movie Management"
+                ],
+                "description": "Delete Movies",
+                "parameters": [
+                    {
+                        "name": "ids",
+                        "in": "body",
+                        "description": "Ids of users",
+                        "schema": {
+                            "$ref": "#/definitions/DeleteMovie"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization token",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Movies deleted successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/DeleteMovie"
+                        }
+                    }
+                }
+            }
+        },
+        "/getMoviesDetails/{MovieId}": {
+            "get": {
+                "tags": [
+                    "Movie Management"
+                ],
+                "description": "Get Movie",
+                "parameters": [
+                    {
+                        "name": "MovieId",
+                        "in": "path",
+                        "description": "Id of Movie",
+                        "schema": {
+                            "$ref": "#/definitions/MoviesList"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization token",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User data.",
+                        "schema": {
+                            "$ref": "#/definitions/MoviesList"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "MoviesList": {
+            "required": [
+                "page",
+                "pagesize"
+            ],
+            "properties": {
+                "page": {
+                    "example": 1,
+                    "type": "number"
+                },
+                "pagesize": {
+                    "example": 10,
+                    "type": "number"
+                },
+                "searchText": {
+                    "example": "",
+                    "type": "string"
+                }
+            
+            }
+        },
+        "DeleteMovie": {
+            "required": [
+                "ids"
+            ],
+            "properties": {
+                "ids": {
+                    "example": [
+                        "5ce25306e6405f7072059128",
+                        "5ce25320e6405f707205912f"
+                    ],
+                    "type": "array"
+                }
+            }
+        },
+        "AddMovie": {
+            "required": [
+                "movieName",
+                 "rating",
+                 "cast",
+                 "genre",
+                 "releaseDate"
+            ],
+            "properties": {
+                "title": {
+                    "example": "Test",
+                    "type": "string"
+                },
+                "description": {
+                    "example": "Welcome to test",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
